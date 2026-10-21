@@ -1,13 +1,12 @@
-# Trama — v17.12.42
+# Trama
 
-Aplicação web de organização financeira pessoal, feita com HTML, CSS e JavaScript.
+Aplicação web de organização financeira.
 
 ## Recursos da interface
 
 - Planejamento financeiro por mês, com receitas, despesas e valores a guardar.
 - Cofre para organizar valores e metas.
 - Cadastro visual de cartões e acompanhamento de faturas/parcelas.
-- Temas e personalização visual.
 - Backup e restauração dos dados em arquivo JSON.
 - Lembretes no navegador enquanto a aplicação estiver aberta.
 

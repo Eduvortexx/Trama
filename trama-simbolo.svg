@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">Símbolo Trama</title>
+  <desc id="desc">Símbolo modular azul-violeta com barras horizontais e verticais interligadas, representando trama, organização e planejamento.</desc>
+  <defs>
+    <linearGradient id="trama-bars" x1="10" y1="10" x2="55" y2="55" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#C6CCFF"/>
+      <stop offset=".46" stop-color="#7276E9"/>
+      <stop offset="1" stop-color="#39417F"/>
+    </linearGradient>
+    <linearGradient id="trama-highlight" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity=".7"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity=".08"/>
+    </linearGradient>
+  </defs>
+  <!-- Traços horizontais: camadas de uma trama organizada. -->
+  <g fill="url(#trama-bars)" stroke="#FFFFFF" stroke-opacity=".22" stroke-width=".45">
+    <rect x="9" y="22" width="27" height="6" rx="3"/>
+    <rect x="43" y="22" width="12" height="6" rx="3"/>
+    <rect x="9" y="34" width="13" height="6" rx="3"/>
+    <rect x="32" y="34" width="23" height="6" rx="3"/>
+  </g>
+  <!-- Traços verticais cruzam as linhas para sugerir o entrelaçamento. -->
+  <g fill="url(#trama-bars)" stroke="#FFFFFF" stroke-opacity=".25" stroke-width=".45">
+    <rect x="24" y="7" width="6" height="12" rx="3"/>
+    <rect x="36" y="7" width="6" height="24" rx="3"/>
+    <rect x="24" y="29" width="6" height="27" rx="3"/>
+    <rect x="36" y="33" width="6" height="23" rx="3"/>
+  </g>
+  <!-- Reflexos delicados, mantendo uma silhueta simples e legível em tamanho pequeno. -->
+  <g fill="none" stroke="url(#trama-highlight)" stroke-width=".75" stroke-linecap="round" opacity=".8">
+    <path d="M12 23.5H32.5M46 23.5H52.5M12 35.5H19"/>
+    <path d="M25.5 10V17M37.5 10V28M25.5 32V52M37.5 36V52"/>
+  </g>
+</svg>

@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Trama — Organização financeira com clareza.</title>
+<meta name="description" content="Painel pessoal para planejamento mensal, acompanhamento de baús e controle de cartões.">
+<meta name="theme-color" content="#7276E9">
+<link rel="icon" type="image/svg+xml" href="./trama-simbolo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Playfair+Display:wght@800&display=swap">
+<link rel="stylesheet" href="style.css?v=17.12.42">
+</head>
+<body class="app-shell auth-active">
+<svg class="glass-filter-defs" aria-hidden="true" width="0" height="0" focusable="false">
+  <filter id="glass-displace" x="-25%" y="-25%" width="150%" height="150%">
+    <feTurbulence type="fractalNoise" baseFrequency="0.018 0.035" numOctaves="2" seed="8" result="texture"/>
+    <feDisplacementMap in="SourceGraphic" in2="texture" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+  </filter>
+</svg>
+
+<section id="auth-landing" class="auth-landing" aria-label="Bem-vindo à Trama">
+  <aside class="auth-showcase">
+    <div class="auth-showcase-glow auth-showcase-glow-a" aria-hidden="true"></div>
+    <div class="auth-showcase-glow auth-showcase-glow-b" aria-hidden="true"></div>
+    <div class="auth-showcase-brand">
+      <img src="./trama-simbolo.svg" alt="" width="46" height="46">
+      <span>Trama</span>
+    </div>
+    <div class="auth-showcase-copy">
+      <h1>Se organize sem complicações.</h1>
+      <p>Planeje seus meses, acompanhe o que gasta e veja seu dinheiro ganhar direção — tudo em um só lugar.</p>
+    </div>
+    <div class="auth-visual auth-visual-card-only" aria-label="Prévia da experiência financeira da Trama">
+      <article class="auth-scene auth-scene-card auth-single-card" aria-label="Cartão de crédito com recursos de organização financeira">
+        <div class="auth-card-backdrop" aria-hidden="true"></div>
+
+        <div class="auth-entry-feature auth-entry-feature--categories">
+          <span class="auth-entry-feature-icon auth-entry-feature-icon--categories" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="6.5" height="6.5" rx="1.5"/><rect x="14" y="3.5" width="6.5" height="6.5" rx="1.5"/><rect x="3.5" y="14" width="6.5" height="6.5" rx="1.5"/><rect x="14" y="14" width="6.5" height="6.5" rx="1.5"/></svg>
+          </span>
+          <span class="auth-entry-feature-copy"><b>Organizado por categoria</b><small>Entenda melhor para onde vai seu dinheiro</small></span>
+        </div>
+
+        <div class="auth-entry-vault" aria-label="Cofre">
+          <span class="auth-entry-vault-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1"/><path d="M6 8v1M18 15v1M7 20v1M17 20v1"/></svg>
+          </span>
+          <span>Cofre</span>
+        </div>
+
+        <div class="auth-demo-card">
+          <div class="auth-demo-card-top"><span class="auth-demo-chip"><i></i></span><span>TRAMA</span></div>
+          <div class="auth-demo-label">FATURA DO MÊS</div>
+          <div class="auth-demo-value">R$ 1.284,70</div>
+          <div class="auth-demo-track"><i></i></div>
+          <div class="auth-demo-card-bottom"><span>Ultravioleta<small>Banco emissor</small></span><span class="auth-demo-card-mark">✳</span></div>
+        </div>
+
+        <div class="auth-entry-feature auth-entry-feature--planning">
+          <span class="auth-entry-feature-icon auth-entry-feature-icon--planning" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M3 8h18M3 13h18M3 17h18M8 8v13M14 8v13"/></svg>
+          </span>
+          <span class="auth-entry-feature-copy"><b>Seu planejamento de meses</b><small>Organize tudo com mais facilidade</small></span>
+        </div>
+      </article>
+    </div>
+  </aside>
+
+  <section class="auth-side" aria-label="Acesso à Trama">
+    <div class="auth-side-inner">
+      <div class="auth-mobile-brand"><img src="./trama-simbolo.svg" alt="" width="38" height="38"><strong>Trama</strong></div>
+      <div class="auth-side-welcome auth-side-kicker">BEM-VINDO À TRAMA</div>
+      <div class="auth-access-card glass-surface">
+        <div id="auth-mode-switch" class="auth-mode-switch" role="tablist" aria-label="Tipo de acesso">
+          <button type="button" id="auth-tab-login" class="is-active" role="tab" aria-selected="true" aria-controls="auth-login-form" onclick="setAuthMode('login')">Entrar</button>
+          <button type="button" id="auth-tab-register" role="tab" aria-selected="false" aria-controls="auth-register-form" onclick="setAuthMode('register')">Criar conta</button>
+        </div>
+        <div id="auth-feedback" class="auth-feedback" role="status" aria-live="polite" hidden></div>
+        <form id="auth-login-form" class="auth-form" novalidate onsubmit="handleAuthLogin(event)">
+          <label class="auth-field">E-mail<input id="auth-login-email" type="email" autocomplete="username" placeholder="voce@exemplo.com" required></label>
+          <label class="auth-field">Senha<span class="auth-password-wrap"><input id="auth-login-password" type="password" autocomplete="current-password" placeholder="Sua senha" required><button type="button" class="auth-password-toggle" onclick="toggleAuthPassword('auth-login-password',this)" aria-label="Mostrar senha">◉</button></span></label>
+          <div class="auth-forgot-row"><button type="button" onclick="authForgotPassword()">Esqueci minha senha</button></div>
+          <button type="submit" class="auth-primary-button">Entrar na Trama <span aria-hidden="true">→</span></button>
+        </form>
+        <form id="auth-register-form" class="auth-form" onsubmit="handleAuthRegister(event)" hidden>
+          <div class="auth-register-fields">
+            <label class="auth-field auth-name-field">Como podemos te chamar?<input id="auth-register-name" type="text" autocomplete="name" maxlength="80" placeholder="Seu nome" required></label>
+            <label class="auth-field auth-email-field">E-mail<input id="auth-register-email" type="email" autocomplete="email" placeholder="voce@exemplo.com" required></label>
+            <label class="auth-field auth-password-field">Crie uma senha<span class="auth-password-wrap"><input id="auth-register-password" type="password" autocomplete="new-password" minlength="8" placeholder="Pelo menos 8 caracteres" required><button type="button" class="auth-password-toggle" onclick="toggleAuthPassword('auth-register-password',this)" aria-label="Mostrar senha">◉</button></span></label>
+            <label class="auth-field auth-password-confirm-field">Confirme sua senha<span class="auth-password-wrap"><input id="auth-register-password-confirm" type="password" autocomplete="new-password" minlength="8" placeholder="Digite a senha novamente" required><button type="button" class="auth-password-toggle" onclick="toggleAuthPassword('auth-register-password-confirm',this)" aria-label="Mostrar senha">◉</button></span></label>
+          </div>
+          <button type="submit" class="auth-primary-button auth-create-account-button">Continuar <span aria-hidden="true">→</span></button>
+          <p class="auth-terms-note">Sua senha é usada apenas nesta prévia e não é salva no navegador.</p>
+        </form>
+
+        <div id="auth-social-block">
+          <div class="auth-social-divider"><span>ou continue com</span></div>
+          <div class="auth-social-buttons">
+            <button type="button" onclick="authProviderNotice('Google')" aria-label="Continuar com Google"><svg viewBox="0 0 24 24" width="19" height="19" aria-hidden="true"><path fill="#4285F4" d="M21.6 12.23c0-.71-.06-1.39-.18-2.05H12v3.88h5.38a4.6 4.6 0 0 1-2 3.02v2.52h3.23c1.89-1.74 2.99-4.3 2.99-7.37z"/><path fill="#34A853" d="M12 22c2.7 0 4.97-.9 6.62-2.4l-3.23-2.52c-.9.6-2.05.96-3.39.96-2.61 0-4.83-1.76-5.62-4.13H3.05v2.6A10 10 0 0 0 12 22z"/><path fill="#FBBC05" d="M6.38 13.91A6.02 6.02 0 0 1 6.06 12c0-.66.11-1.31.32-1.91v-2.6H3.05A10 10 0 0 0 2 12c0 1.61.39 3.13 1.05 4.51l3.33-2.6z"/><path fill="#EA4335" d="M12 5.96c1.47 0 2.79.5 3.83 1.5l2.87-2.87C16.96 2.98 14.7 2 12 2a10 10 0 0 0-8.95 5.49l3.33 2.6C7.17 7.72 9.39 5.96 12 5.96z"/></svg> Google</button>
+            <button type="button" onclick="authProviderNotice('Apple')" aria-label="Continuar com Apple"><svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true"><path d="M16.37 12.2c.02 2.18 1.91 2.91 1.93 2.92-.02.05-.3 1.04-.99 2.06-.6.88-1.23 1.75-2.22 1.77-.97.02-1.29-.57-2.4-.57-1.1 0-1.46.55-2.38.59-.96.04-1.69-.95-2.3-1.82-1.25-1.81-2.2-5.11-.92-7.34.63-1.08 1.76-1.77 2.98-1.79.93-.02 1.82.63 2.4.63.57 0 1.65-.78 2.78-.67.47.02 1.8.19 2.65 1.45-.07.04-1.58.92-1.56 2.77ZM14.54 5.97c.5-.6.84-1.44.75-2.27-.73.03-1.62.49-2.14 1.08-.47.53-.88 1.38-.77 2.19.81.06 1.65-.41 2.16-1Z"/></svg> Apple</button>
+          </div>
+        </div>
+      </div><!-- /.auth-access-card -->
+      <!-- Contatos da empresa ficam abaixo do painel de acesso, nunca dentro dele. -->
+      <footer class="auth-contact-footer" aria-label="Contato da Trama">
+        <span class="auth-contact-email"><b>E-mail</b> · contato oficial em breve</span>
+        <span class="auth-contact-cnpj"><b>CNPJ</b> · dados cadastrais em breve</span>
+      </footer>
+    </div><!-- /.auth-side-inner -->
+  </section>
+</section>
+
+<header>
+  <div class="brand brand-mark" aria-hidden="true"></div>
+  <nav><button data-t="plan" onclick="go('plan')" aria-label="Planejamento" title="Planejamento"><svg class="ni" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span class="nl">Planejamento</span></button><button data-t="cx" onclick="go('cx')" aria-label="Cofre" title="Cofre"><svg class="ni" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5.5" r="3.5"/><path d="M12 4v3"/><rect x="3" y="11" width="18" height="10" rx="2.5"/><path d="M8 15.5h8"/></svg><span class="nl">Cofre</span></button><button data-t="cart" onclick="go('cart')" aria-label="Cartão de crédito" title="Cartão de crédito"><svg class="ni" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1.5" y="4" width="21" height="16" rx="2.5"/><line x1="1.5" y1="10" x2="22.5" y2="10"/><line x1="5.5" y1="15.5" x2="10" y2="15.5"/></svg><span class="nl">Cartão de crédito</span></button></nav>
+  <div class="act">
+    <span class="ib app-save-status" id="cs" style="font-size:12px;cursor:default">…</span>
+    <div class="cfg">
+      <button class="ib ic app-menu-toggle" type="button" onclick="mn(event)" aria-label="Abrir menu" aria-haspopup="true" aria-controls="pop" title="Menu">
+        <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <div class="pop app-settings-menu" id="pop" hidden>
+        <button type="button" onclick="openProfile();$('#pop').hidden=true">Perfil</button>
+        <button type="button" onclick="oe('glass');$('#pop').hidden=true">Glass</button>
+        <button type="button" onclick="bk();$('#pop').hidden=true">Backup</button>
+        <button type="button" onclick="$('#rf').click();$('#pop').hidden=true">Restaurar</button>
+        <button type="button" onclick="oe('color');$('#pop').hidden=true">Editar</button>
+        <button type="button" class="app-menu-logout" onclick="exitTrama();$('#pop').hidden=true">Sair</button>
+      </div>
+    </div>
+    <input type="file" id="rf" accept=".json" hidden onchange="rs(this.files[0]);this.value=''">
+    <button class="ib ic" id="th" onclick="tg()" aria-label="Alternar tema" title="Alternar tema"></button>
+  </div></header>
+<main>
+<section class="tab" id="plan" hidden>
+  <!-- Desfazer/refazer permanecem no alinhamento superior compartilhado pelas abas. -->
+  <div class="tab-tools tab-tools--section-actions plan-history-tools">
+    <div class="ut u1" data-t="plan"></div>
+  </div>
+  <div class="spend-wrap">
+    <div class="fx spend-fx" id="spend-fx">
+      <button class="ib fut" id="spend-btn" onclick="toggleSpend()" aria-expanded="false"><span class="fl">Gastos</span></button>
+      <div class="fbody spend-body"><div class="fh"><div><h2 style="margin:0">Gastos por categoria</h2><p class="sub" style="margin:2px 0 0">Veja onde seu dinheiro está indo neste mês.</p></div><button class="ib" onclick="toggleSpend()">Fechar</button></div><div id="spend-content"></div></div>
+    </div>
+  </div>
+  <div class="plan-table-stack">
+    <div class="plan-table-topline">
+      <div id="plan-greeting" class="plan-greeting" hidden><h2>Olá, <span id="plan-first-name"></span></h2></div>
+      <div class="tab-help-control">
+        <button class="tab-help-btn" type="button" aria-label="Como usar o Planejamento" aria-expanded="false" aria-controls="plan-help-pop" onclick="toggleTabHelp(this)">?</button>
+        <div class="tab-help-pop" id="plan-help-pop" hidden>Adicione receitas, despesas ou valores para guardar. Use <b>Planejado</b> para registrar o valor previsto. Quando a movimentação acontecer, atualize <b>Pago</b> com o valor realizado. Os valores de <b>Guardar</b> marcados como pagos também aparecem no Cofre, e as faturas dos cartões são incluídas automaticamente nesta tabela.</div>
+      </div>
+    </div>
+    <div class="nu" id="tb"></div>
+  </div>
+  <form class="card ad" onsubmit="add(event)">
+    <h2>Adicionar lançamento</h2>
+    <p class="sub">Preencha uma vez e aplique a um mês ou a um período inteiro. Você pode montar uma lista com vários lançamentos e lançar todos de uma vez.</p>
+    <div class="fm">
+      <select id="ft" onchange="fcr()"><option value="receita">Receita</option><option value="despesa" selected>Despesa</option><option value="guardar">Guardar</option></select>
+      <input id="fd" placeholder="Descrição" style="flex:1;min-width:130px">
+      <span id="fcw"></span>
+      <input id="fp" type="number" step="0.01" min="0" placeholder="Planejado" style="width:115px">
+    </div>
+    <div id="expense-reminder-fields" class="expense-reminder-fields">
+      <div class="expense-reminder-grid">
+        <label class="expense-due-field" for="fdue">Vencimento / dia do lembrete
+          <input id="fdue" type="date" aria-describedby="reminder-support-note">
+        </label>
+        <label class="expense-reminder-toggle"><input type="checkbox" id="fremind" onchange="toggleReminderOptions()"> Quero receber um lembrete</label>
+      </div>
+      <div id="reminder-options" class="reminder-options" hidden>
+        <label for="fchannel">Como deseja ser lembrado(a)?
+          <select id="fchannel"><option value="browser">Notificação neste navegador</option><option value="email" disabled>E-mail (em breve)</option></select>
+        </label>
+        <p class="reminder-support-note" id="reminder-support-note">A notificação aparece na data escolhida enquanto a Trama estiver aberta. Para enviar e-mails ou lembrar com o site fechado, será necessária a integração de notificações.</p>
+      </div>
+    </div>
+    <label style="display:flex;gap:8px;align-items:center;margin:12px 0 8px;cursor:pointer"><input type="checkbox" id="fr" onchange="rpt()"> Repetir em vários meses (aplicar a todos do período)</label>
+    <div class="rpt" id="rpt">De <input type="month" id="fa" class="mi"> até <input type="month" id="fz" class="mi"></div>
+    <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button class="ib" type="submit" style="border-color:var(--ac2)">Adicionar à lista</button><button class="pb" type="button" id="cb" onclick="commit()">Lançar na tabela</button></div>
+    <div id="st" style="margin-top:12px"></div>
+    <p class="ms" id="ms"></p>
+    <datalist id="cats"></datalist>
+  </form>
+</section>
+
+<section class="tab cofre-tab" id="cx" hidden>
+  <div class="tab-tools tab-tools--centered cofre-tools">
+    <div class="tab-help-control">
+      <button class="tab-help-btn" type="button" aria-label="Como usar o Cofre" aria-expanded="false" aria-controls="cofre-help-pop" onclick="toggleTabHelp(this)">?</button>
+      <div class="tab-help-pop" id="cofre-help-pop" hidden>Crie baús para separar o seu dinheiro. Em <b>Meus baús</b>, clique em um baú para consultar o saldo e resgatar o valor para <b>Ganhei</b> no Planejamento. Se mudar de ideia, use <b>Guardar</b> no lançamento para devolver o valor ao baú. Só aportes pagos entram no saldo e no gráfico; rendimentos e projeções não são incluídos.</div>
+    </div>
+    <div class="ut" data-t="cx"></div>
+  </div>
+
+  <!-- Cofre: ícone central, instrução objetiva, painéis compactos e modal Glass para planos. -->
+  <div class="cofre-action-dock" aria-label="Ações do Cofre">
+    <div class="cofre-hero-chest-wrap">
+      <img class="cofre-hero-chest" src="./trama-bau-flaticon.png" alt="Baú azul com detalhes dourados" width="112" height="112" decoding="async">
+    </div>
+    <p class="cofre-intro">Crie baús para separar o seu dinheiro e acompanhe o quanto acumulou com o tempo. Use o botão de “Meus planos” para saber quanto você deve guardar por mês para alcançar seu objetivo!</p>
+    <div class="cofre-action-controls" role="group" aria-label="Criar baú, consultar baús e planejar metas">
+      <button type="button" id="cofre-create-toggle" class="cofre-action-button" onclick="toggleCofrePanel('create')" aria-expanded="false" aria-controls="cofre-create-card"><span>Criar baú</span>
+      </button>
+      <button type="button" id="cofre-list-toggle" class="cofre-action-button" onclick="toggleCofrePanel('list')" aria-expanded="false" aria-controls="cofre-box-list-card"><span>Meus baús</span>
+      </button>
+      <button type="button" id="cofre-plans-toggle" class="cofre-action-button" onclick="toggleCofrePanel('plans')" aria-expanded="false" aria-controls="cofre-goals-modal"><span>Meus planos</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="cofre-panels" aria-live="polite">
+    <section class="card cofre-create-panel cofre-glass-panel" id="cofre-create-card" aria-labelledby="cofre-create-title" hidden>
+      <div class="cofre-panel-heading">
+        <span class="cofre-panel-icon" aria-hidden="true"><img src="./trama-bau-flat-azul.png" alt="" width="32" height="32" decoding="async"></span>
+        <div><h2 id="cofre-create-title">Criar baú</h2><p class="sub">Dê um nome para organizar seu dinheiro.</p></div>
+      </div>
+      <form class="cofre-create-form" onsubmit="addBox(event)">
+        <label class="cofre-field" for="cn">Nome do baú<input id="cn" placeholder="Ex.: Reserva de emergência" maxlength="70" required></label>
+        <button class="pb" type="submit">Criar baú</button>
+      </form>
+      <p class="cofre-form-note">Depois, selecione o baú em Planejamento ao adicionar um lançamento do tipo “Guardar”.</p>
+    </section>
+
+    <section class="card cofre-box-list-panel cofre-glass-panel" id="cofre-box-list-card" aria-labelledby="cofre-box-list-title" hidden>
+      <div class="cofre-panel-heading">
+        <span class="cofre-panel-icon" aria-hidden="true"><img src="./trama-bau-flat-azul.png" alt="" width="32" height="32" decoding="async"></span>
+        <div><h2 id="cofre-box-list-title">Meus baús</h2><p class="sub">Confira o saldo acumulado em cada baú.</p></div>
+      </div>
+      <div id="bx" class="cofre-box-list" aria-live="polite"></div>
+    </section>
+
+  </div>
+
+
+  <!-- Planos salvos ficam no fluxo da página, centralizados abaixo das ações. -->
+  <section id="cofre-saved-goals-section" class="cofre-saved-goals-section" aria-labelledby="cofre-saved-goals-title" hidden>
+    <div class="cofre-chart-heading-copy cofre-saved-goals-heading-copy">
+      <h2 id="cofre-saved-goals-title">Meus planos</h2>
+      <p class="sub">Acompanhe suas metas</p>
+    </div>
+    <div id="cofre-saved-goals" class="cofre-saved-goals" aria-live="polite"></div>
+  </section>
+
+  <!-- Gráfico de saldo acumulado, com barras 3D suaves que sobem quando a seção entra na tela. -->
+  <section class="cofre-chart-section" id="cofre-chart-section" aria-labelledby="cofre-chart-title">
+    <div class="cofre-chart-heading">
+      <div class="cofre-chart-heading-copy"><h2 id="cofre-chart-title">Evolução do saldo guardado</h2><p class="sub">Veja como o valor guardado cresceu mês a mês.</p></div>
+      <div class="mnv card cofre-month-switch" style="padding:6px" aria-label="Mês do Cofre">
+        <button class="ib" type="button" onclick="changeCofreMonth(-1)" aria-label="Mês anterior do Cofre">‹</button>
+        <b id="cofre-active-month" aria-live="polite"></b>
+        <button class="ib" type="button" onclick="changeCofreMonth(1)" aria-label="Próximo mês do Cofre">›</button>
+      </div>
+    </div>
+    <div id="cofre-chart" class="cofre-chart" aria-live="polite"></div>
+  </section>
+</section>
+<section class="tab" id="cart" hidden>
+  <div class="tab-tools tab-tools--centered card-tools">
+    <div class="tab-help-control">
+      <button class="tab-help-btn" type="button" aria-label="Como usar Cartão de crédito" aria-expanded="false" aria-controls="cart-help-pop" onclick="toggleTabHelp(this)">?</button>
+      <div class="tab-help-pop" id="cart-help-pop" hidden>Crie seu cartão e registre uma compra informando descrição, categoria, valor total, número de parcelas e a primeira fatura. Use <b>Adicionar à lista</b> para organizar várias compras e depois <b>Lançar compras na fatura</b>. As parcelas seguintes são distribuídas pelos meses posteriores; o pagamento da fatura é registrado em Planejamento.</div>
+    </div>
+    <div class="ut" data-t="cart"></div>
+  </div>
+  <div class="kcards" id="kcs"></div>
+  <div class="kgrid">
+    <div class="card">
+      <h2>Nova compra</h2>
+      <p class="sub">Preencha os dados da compra e adicione-a à lista. Escolha a primeira fatura; as parcelas seguintes serão distribuídas automaticamente pelos meses seguintes.</p>
+      <form onsubmit="kadd(event)">
+        <div class="kf2 purchase-fields">
+          <label class="lbl">Cartão<select id="kcd" class="mi"></select></label>
+          <label class="lbl">Primeira fatura<input type="month" id="km" class="mi" required></label>
+          <label class="lbl purchase-description">Descrição<input id="kd" class="mi" placeholder="Ex.: Notebook" required></label>
+          <label class="lbl">Categoria<select id="kcat" class="mi" required><option value="">Selecione a categoria</option><option>Contas</option><option>Comida</option><option>Entretenimento</option><option>Saúde</option><option>Salário</option><option>Imprevisto</option><option>Outros</option></select></label>
+          <label class="lbl">Valor total<input id="kv" type="number" step="0.01" min="0" class="mi" placeholder="0,00" required></label>
+          <label class="lbl">Parcelas<input id="kp" type="number" min="1" max="60" class="mi" placeholder="1" value="1" required></label>
+        </div>
+        <div class="purchase-actions"><button class="ib" type="submit" style="border-color:var(--ac2)">Adicionar à lista</button><button class="pb" type="button" id="kcb" onclick="kcommit()">Lançar compras na fatura</button></div>
+      </form>
+      <p class="ms" id="kms"></p>
+      <div id="kst"></div>
+    </div>
+    <div class="kst card-summary-stack">
+      <div id="n4" class="card-month-switch-host"></div>
+      <div class="card-metrics-grid" id="kc" aria-label="Resumo mensal do cartão de crédito"></div>
+    </div>
+  </div>
+  <!-- Gastos no cartão: os valores são agrupados pela categoria de cada compra e pela parcela da fatura atual. -->
+  <div class="spend-wrap cart-spend-wrap">
+    <div class="fx spend-fx" id="cart-spend-fx">
+      <button class="ib fut" id="cart-spend-btn" type="button" onclick="toggleCartSpend()" aria-expanded="false"><span class="fl">Gastos</span></button>
+      <div class="fbody spend-body">
+        <div class="fh"><div><h2 style="margin:0">Gastos por categoria</h2><p class="sub" style="margin:2px 0 0">Distribuição das parcelas da fatura selecionada.</p></div><button class="ib" type="button" onclick="toggleCartSpend()">Fechar</button></div>
+        <div id="cart-spend-content"></div>
+      </div>
+    </div>
+  </div>
+  <section class="data-section invoice-section"><h2>Faturas dos próximos 12 meses</h2><p class="sub">Clique em uma coluna para ver o que foi comprado naquela fatura. O pagamento você marca no planejamento, na coluna Pago da linha "Cartão de crédito".</p><div id="kg"></div></section>
+  <section class="data-section history-section">
+    <button class="hbt" id="hbt" onclick="tgh()" aria-label="Abrir ou fechar o histórico"><span class="ht">Histórico de compras <small id="hct"></small></span><svg class="chv" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+    <div id="hw" hidden><div class="fm" style="margin:14px 0 8px"><select id="hf" class="ib" onchange="R()"></select></div><div class="ov" id="ka"></div></div>
+  </section>
+</section>
+</main>
+
+<div id="setup-overlay" class="setup-overlay" hidden aria-hidden="true" role="presentation">
+  <section class="setup-dialog glass-surface" role="dialog" aria-modal="true" aria-labelledby="setup-title" aria-describedby="setup-description">
+    <div class="setup-brand-row"><img src="./trama-simbolo.svg" width="34" height="34" alt=""><span>Trama</span><span id="setup-step-count" class="setup-step-count">ETAPA 1 DE 2</span></div>
+    <div class="setup-heading"><span class="auth-side-kicker">VAMOS PERSONALIZAR</span><h2 id="setup-title">Vamos começar pelo seu objetivo</h2><p id="setup-description">São duas etapas rápidas para preparar seu espaço financeiro.</p></div>
+
+    <section id="setup-step-objective" class="setup-step" aria-labelledby="setup-objective-title">
+      <h3 id="setup-objective-title">Você precisa se organizar por qual motivo?</h3>
+      <p class="setup-step-copy">Escolha o que mais combina com seu momento. Isso ajuda a deixar sua experiência mais relevante.</p>
+      <label class="auth-field setup-objective-field">Meu objetivo principal
+        <select id="setup-objective" required>
+          <option value="" selected disabled>Escolha seu objetivo</option>
+          <option value="viagem">Planejar uma viagem</option>
+          <option value="casa">Conquistar uma casa</option>
+          <option value="organizacao">Melhorar minha organização financeira</option>
+          <option value="dividas">Quitar dívidas</option>
+          <option value="reserva">Montar uma reserva de emergência</option>
+          <option value="projeto">Realizar um projeto pessoal</option>
+          <option value="outro">Outro objetivo</option>
+        </select>
+      </label>
+      <div id="setup-feedback-objective" class="auth-feedback" role="status" aria-live="polite" hidden></div>
+      <button type="button" class="auth-primary-button setup-primary-action" onclick="setupNextStep()">Continuar <span aria-hidden="true">→</span></button>
+    </section>
+
+    <section id="setup-step-personalize" class="setup-step" hidden aria-labelledby="setup-title">
+      <div id="setup-palette-options" class="setup-palette-options" role="group" aria-label="Cores da Trama"></div>
+      <div class="setup-custom-color-row"><label for="setup-custom-color">Ou escolha qualquer cor</label><div class="setup-color-input"><input type="color" id="setup-custom-color" value="#7276E9" oninput="setSetupCustomColor(this.value)" aria-label="Escolher uma cor personalizada"><output id="setup-custom-color-hex">#7276E9</output></div></div>
+      <div class="setup-color-preview" id="setup-color-preview" style="--setup-pc:#7276E9;--setup-pl:#9A9DFF;--setup-pd:#494EAD;--setup-on:#fff">
+        <div class="setup-color-preview-head"><strong id="setup-color-bank-name">Prévia da Trama</strong><small>PRÉVIA DAS SUAS CORES</small></div>
+        <div class="setup-color-preview-body"><div><span>Saldo disponível</span><b>R$ 2.450,00</b></div><div><span>Dinheiro guardado</span><b>Reserva de emergência</b></div></div>
+        <div class="setup-color-preview-actions"><button type="button" tabindex="-1">Adicionar lançamento</button><button type="button" tabindex="-1">Guardar</button></div>
+      </div>
+      <div id="setup-feedback-personalize" class="auth-feedback" role="status" aria-live="polite" hidden></div>
+      <div class="setup-final-actions"><button type="button" class="ib" onclick="setupPreviousStep()">Voltar</button><button type="button" class="auth-primary-button" onclick="finishAuthSetup()">Finalizar configuração <span aria-hidden="true">→</span></button></div>
+      <p class="setup-integration-note">Esta é a configuração visual inicial. Login real e confirmação de e-mail exigem integração com um serviço seguro.</p>
+    </section>
+  </section>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="footer-mark trama-mark" aria-hidden="true"><img src="./trama-simbolo.svg" alt="" width="38" height="38"></span>
+      <div><strong>Trama</strong></div>
+    </div>
+    <div class="footer-contact">
+      <span class="footer-label">Contato</span>
+      <a href="mailto:seuemail@seudominio.com.br">seuemail@seudominio.com.br</a>
+      <span class="footer-hint">Substitua pelo e-mail de contato oficial.</span>
+    </div>
+    <div class="footer-social">
+      <span class="footer-label">Acompanhe</span>
+      <div class="social-links">
+        <a href="#" aria-label="Facebook — inserir link" title="Facebook — inserir link"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M13.4 21v-8h2.7l.4-3.1h-3.1v-2c0-.9.3-1.5 1.6-1.5h1.7V3.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.1H7.2V13H10v8h3.4z"/></svg></a>
+        <a href="#" aria-label="Instagram — inserir link" title="Instagram — inserir link"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg></a>
+        <a href="#" aria-label="Twitter/X — inserir link" title="Twitter/X — inserir link"><svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true"><path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.9 5.8 22H2.6l7.3-8.4L1.2 2h6.5l4.5 6.7L18.9 2zm-1.1 18h1.7L6.7 3.9H4.9L17.8 20z"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-credits" aria-label="Créditos de ícones">
+    <a href="https://www.flaticon.com/br/icone-gratis/bau-de-tesouro_4085952?term=ba%C3%BA&amp;related_id=4085952" target="_blank" rel="noopener noreferrer">Ícone do baú por Magnific / Flaticon</a>
+    <a href="https://www.flaticon.com/br/icone-gratis/moeda_3585825?term=moeda+cifrao&amp;related_id=3585825" target="_blank" rel="noopener noreferrer">Ícone de moeda por Aficons studio / Flaticon</a>
+  </div>
+  <div class="footer-bottom"><span>© <span id="footer-year">2026</span> Trama. Todos os direitos reservados.</span><span>CNPJ: <strong>[inserir CNPJ]</strong></span></div>
+</footer>
+
+<div id="ed" class="md" hidden onclick="if(event.target===this)ce()">
+  <div class="mdc" role="dialog" aria-modal="true" aria-label="Personalizar cores">
+    <div class="mdh"><h2>Personalizar cores</h2><button class="ib" onclick="ce()" aria-label="Fechar">✕</button></div>
+    <p class="sub color-only">Escolha uma cor para a identidade da Trama. A alteração será aplicada às três abas.</p>
+    <section class="glass-settings glass-only" aria-labelledby="glass-title">
+      <div class="glass-settings-head">
+        <div>
+          <h3 id="glass-title">Liquid Glass</h3>
+          <p class="sub">Ajuste a transparência das superfícies de vidro em tempo real.</p>
+        </div>
+        <output id="glass-value" for="glass-range">72%</output>
+      </div>
+      <div class="glass-control">
+        <span class="glass-endpoint">Mais transparente</span>
+        <input id="glass-range" type="range" min="20" max="94" step="1" value="72"
+          aria-label="Transparência do Liquid Glass"
+          oninput="setGlass(this.value)">
+        <span class="glass-endpoint">Mais sólido</span>
+      </div>
+      <div class="glass-preview" aria-hidden="true">
+        <div class="glass-preview-orb"></div>
+        <div class="glass-preview-panel"><span>Finanças</span><i></i><i></i><i></i></div>
+      </div>
+      <p class="glass-note">O efeito combina transparência, desfoque, reflexos e camadas para simular vidro óptico. O resultado pode variar ligeiramente conforme o navegador.</p>
+    </section>
+    <div class="editor-palette-row color-only">
+      <div class="global-palette-list sw" id="edw" aria-label="Paletas padrão"></div>
+      <strong id="ed-selected-name" class="editor-selected-name">Azul Trama</strong>
+      <button type="button" id="ed-custom-mode" class="editor-customize-button" aria-pressed="false" onclick="edColorMode(ED.mode==='custom'?'preset':'custom')">Personalizar</button>
+    </div>
+    <section class="global-custom-color color-only" id="ed-custom-panel" hidden>
+      <div class="editor-custom-color-head"><label for="ed-custom-color">Escolha qualquer cor</label><span>RGB/HEX</span></div>
+      <div class="global-color-input"><input type="color" id="ed-custom-color" value="#7276E9" oninput="edSetCustomColor(this.value);const out=document.getElementById('ed-custom-hex');if(out)out.textContent=this.value.toUpperCase()" aria-label="Escolher uma cor personalizada"><output id="ed-custom-hex">#7276E9</output></div>
+      <p>A cor escolhida será aplicada globalmente às três abas.</p>
+    </section>
+    <div class="pvw color-only global-table-pvw"><div class="pv" id="edp" aria-label="Prévia da tabela com a cor escolhida"></div></div>
+    <div class="mdf editor-modal-footer"><span class="color-editor-note color-only" id="ed-apply-note">A mesma cor será aplicada ao Planejamento, Cofre e Cartão de crédito.</span><div class="mda"><button class="ib" onclick="ce()">Cancelar</button><button class="pb" onclick="ca()">Aplicar</button></div></div>
+  </div>
+</div>
+<script src="script.js?v=17.12.41"></script>
+
+
+<div id="delete-confirm" class="confirm-overlay" hidden aria-hidden="true">
+  <section class="confirm-dialog" role="dialog" aria-modal="true" aria-labelledby="delete-confirm-title" aria-describedby="delete-confirm-desc">
+    <div class="confirm-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="m19 6-1 14H6L5 6"/><path d="M10 10v6M14 10v6"/></svg>
+    </div>
+    <h2 id="delete-confirm-title">Excluir cartão?</h2>
+    <p id="delete-confirm-desc">Tem certeza de que deseja excluir este cartão?</p>
+    <div class="confirm-actions">
+      <button type="button" class="confirm-btn confirm-no" id="delete-confirm-no">Não, manter cartão</button>
+      <button type="button" class="confirm-btn confirm-yes" id="delete-confirm-yes">Sim, excluir cartão</button>
+    </div>
+  </section>
+</div>
+
+
+  <!-- Formulário de metas em janela Glass; os planos salvos aparecem fora deste modal. -->
+  <div id="cofre-goals-modal" class="md cofre-goals-modal" hidden aria-hidden="true" onclick="if(event.target===this)closeCofreGoalsModal(true)">
+    <section class="mdc cofre-goals-modal-card" role="dialog" aria-modal="true" aria-labelledby="cofre-goals-title" aria-describedby="cofre-goals-description">
+      <div class="mdh cofre-goals-heading">
+        <div class="cofre-goals-heading-copy"><img class="cofre-goal-money-icon" src="./icone-moeda-azul-trama.png" alt="" width="42" height="42" decoding="async"><div><h2 id="cofre-goals-title">Meus planos</h2><p class="sub" id="cofre-goals-description">Transforme sua meta em um plano mensal possível.</p></div></div>
+        <button class="ib" type="button" onclick="closeCofreGoalsModal(true)" aria-label="Fechar criação de plano">✕</button>
+      </div>
+      <p id="cofre-goal-limit-message" class="cofre-goal-limit-message" hidden>Você já criou os três planos disponíveis. Remova um plano para criar outro.</p>
+      <form id="cofre-goal-form" class="cofre-goal-form" onsubmit="saveCofreGoal(event)">
+        <div class="cofre-goal-form-grid">
+          <label class="cofre-field" for="cofre-goal-target">Valor que deseja alcançar
+            <input id="cofre-goal-target" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="Ex.: 15000" oninput="clearCofreGoalFeedback();updateCofreGoalPreview()" required>
+          </label>
+          <label class="cofre-field" for="cofre-goal-box">Baú relacionado
+            <select id="cofre-goal-box" required aria-required="true" onchange="clearCofreGoalFeedback();updateCofreGoalPreview()"><option value="" selected disabled>Selecione um baú</option></select>
+          </label>
+          <label class="cofre-field" for="cofre-goal-months"><span class="cofre-field-label">Prazo em meses <span class="cofre-field-optional">(opcional)</span></span>
+            <input id="cofre-goal-months" type="number" min="1" max="600" step="1" inputmode="numeric" placeholder="Ex.: 24" oninput="clearCofreGoalFeedback();updateCofreGoalPreview()">
+          </label>
+          <label class="cofre-field" for="cofre-goal-monthly"><span class="cofre-field-label">Quanto pretende guardar por mês <span aria-hidden="true" class="cofre-required-mark">*</span></span>
+            <input id="cofre-goal-monthly" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="Ex.: 2500" oninput="clearCofreGoalFeedback();updateCofreGoalPreview()" required>
+          </label>
+        </div>
+        <p class="cofre-goal-form-note">Informe o valor que pretende guardar por mês. A prévia mostra o tempo estimado para alcançar a meta; se definir um prazo, você poderá comparar o objetivo com o aporte informado.</p>
+        <div id="cofre-goal-preview" class="cofre-goal-preview" aria-live="polite">
+          <p class="cofre-goal-preview-empty">Informe o valor do objetivo para ver quanto guardar por mês e uma estimativa de prazo.</p>
+        </div>
+        <div class="cofre-goal-form-actions"><button id="cofre-goal-submit" type="submit" class="pb">Salvar plano</button></div>
+        <p id="cofre-goal-feedback" class="cofre-goal-feedback" role="status" aria-live="polite" hidden></p>
+      </form>
+    </section>
+  </div>
+
+
+<!-- MODAL GLASS DE RESGATE: transfere o saldo disponível do baú para Ganhei no Planejamento. -->
+<div id="cofre-resgate-modal" class="md cofre-resgate-modal" hidden aria-hidden="true" onclick="if(event.target===this)closeCofreResgateModal(true)">
+  <section class="mdc cofre-resgate-modal-card" role="dialog" aria-modal="true" aria-labelledby="cofre-resgate-title" aria-describedby="cofre-resgate-description">
+    <div class="mdh cofre-resgate-heading">
+      <div><h2 id="cofre-resgate-title">Resgatar do baú</h2><p class="sub" id="cofre-resgate-description">O saldo será transferido para a parte de Ganhei no Planejamento.</p></div>
+      <button class="ib" type="button" onclick="closeCofreResgateModal(true)" aria-label="Fechar resgate">✕</button>
+    </div>
+    <div class="cofre-resgate-balance">
+      <small>Baú selecionado</small>
+      <strong id="cofre-resgate-box-name">—</strong>
+      <small>Saldo disponível</small>
+      <b id="cofre-resgate-balance-value">R$ 0,00</b>
+      <p>Informe o valor que deseja resgatar. O saldo deste baú será atualizado automaticamente.</p>
+    </div>
+    <label class="cofre-field cofre-resgate-amount-field" for="cofre-resgate-amount">Valor do resgate
+      <input id="cofre-resgate-amount" type="text" inputmode="decimal" autocomplete="off" maxlength="20" placeholder="Ex.: 150,00" aria-describedby="cofre-resgate-amount-help" required oninput="clearCofreResgateFeedback()">
+    </label>
+    <small id="cofre-resgate-amount-help" class="cofre-resgate-amount-help">Você pode resgatar até o saldo disponível.</small>
+    <p id="cofre-resgate-feedback" class="cofre-resgate-feedback" role="status" aria-live="polite" hidden></p>
+    <div class="cofre-resgate-actions">
+      <button type="button" class="cofre-resgate-cancel" onclick="closeCofreResgateModal(true)">Cancelar</button>
+      <button type="button" id="cofre-resgate-submit" class="pb" onclick="confirmCofreResgate()">Resgatar</button>
+    </div>
+  </section>
+</div>
+
+
+<!-- MODAL DE CRIAÇÃO DE CARTÃO: janela Glass com prévia ao vivo do acabamento escolhido. -->
+<div id="card-modal" class="md card-modal-overlay" hidden aria-hidden="true" onclick="if(event.target===this)closeCardModal()">
+  <section class="mdc card-modal-card" role="dialog" aria-modal="true" aria-labelledby="card-modal-title" aria-describedby="card-modal-description">
+    <div class="mdh card-modal-heading">
+      <div><h2 id="card-modal-title">Criar cartão</h2><p class="sub" id="card-modal-description">Personalize o cartão e veja a prévia antes de criar.</p></div>
+      <button class="ib" type="button" onclick="closeCardModal()" aria-label="Fechar criação de cartão">✕</button>
+    </div>
+    <form id="card-create-form" class="card-modal-form" onsubmit="addCard(event)">
+      <label class="card-modal-field">Nome do cartão<input id="card-modal-name" maxlength="60" autocomplete="off" placeholder="Ex.: Ultravioleta" required oninput="updateCardPreview()"></label>
+      <label class="card-modal-field">Banco emissor<input id="card-modal-bank" list="card-bank-suggestions" maxlength="60" autocomplete="organization" placeholder="Ex.: Nubank, Itaú, C6 Bank" required oninput="updateCardPreview()"></label>
+      <datalist id="card-bank-suggestions"><option value="Nubank"><option value="Bradesco"><option value="Santander"><option value="Inter"><option value="Itaú"><option value="Neon"><option value="PicPay"><option value="C6 Bank"><option value="Banco do Brasil"><option value="Caixa"><option value="Banco Original"><option value="Outro"></datalist>
+      <label class="card-modal-field">Acabamento do cartão<select id="card-modal-color" class="mi" onchange="updateCardPreview()"><option value="ultravioleta">Ultravioleta</option><option value="violeta">Violeta</option><option value="roxo">Roxo</option><option value="laranja">Laranja</option><option value="azul">Azul</option><option value="azul-neon">Azul neon</option><option value="verde-neon">Verde neon</option><option value="vermelho">Vermelho</option><option value="preto">Preto</option><option value="preto-fosco">Preto fosco</option><option value="branco-arcoiris">Branco metálico arco-íris</option><option value="metalico">Metálico</option><option value="cinza-metalico">Cinza metálico</option></select></label>
+      <div class="card-preview-label"><span>PRÉVIA DO CARTÃO</span><small>O visual acompanha o acabamento escolhido</small></div>
+      <div class="cv skin-ultravioleta card-live-preview" id="card-live-preview" aria-hidden="true" style="--card-pc:#7200a8;--card-pl:#c084fc;--card-pd:#31004f;--card-accent:#a855f7">
+        <div class="top"><span class="chip"><i></i></span><span class="card-preview-mark">TRAMA</span></div>
+        <div><div class="lb">Fatura do mês</div><div class="vl">R$ 0,00</div><div class="pg"><i style="width:38%"></i></div></div>
+        <div class="nm"><span id="card-preview-name">Nome do cartão</span><small class="card-bank" id="card-preview-bank">Banco emissor</small></div>
+      </div>
+      <p class="ms e card-modal-message" id="card-modal-message" role="status" aria-live="polite"></p>
+      <p class="card-modal-note">Você pode cadastrar até 3 cartões no total. Exclua um cartão para liberar espaço.</p>
+      <div class="card-modal-actions"><button class="ib" type="button" onclick="closeCardModal()">Cancelar</button><button class="pb card-modal-submit" type="submit">Criar cartão</button></div>
+    </form>
+  </section>
+</div>
+
+<!-- Perfil compacto: atualizações separadas por campo, prontas para integração segura. -->
+<div id="profile-modal" class="profile-modal" hidden aria-hidden="true" onclick="if(event.target===this)closeProfile()">
+  <section class="profile-dialog glass-surface" role="dialog" aria-modal="true" aria-labelledby="profile-title">
+    <div class="profile-heading"><div><span class="auth-side-kicker">SUA CONTA</span><h2 id="profile-title">Perfil</h2><p>Seus dados de acesso.</p></div><button type="button" class="ib" onclick="closeProfile()" aria-label="Fechar perfil">✕</button></div>
+    <div class="profile-summary" aria-label="Dados atuais do perfil">
+      <div class="profile-summary-row"><div class="profile-summary-copy"><small>Nome</small><strong id="profile-current-name">Não informado</strong></div><button type="button" class="ib profile-action-button" onclick="openProfileEditor('name')">Atualizar nome</button></div>
+      <div class="profile-summary-row"><div class="profile-summary-copy"><small>E-mail</small><strong id="profile-current-email">Não informado</strong></div><button type="button" class="ib profile-action-button" onclick="openProfileEditor('email')">Atualizar e-mail</button></div>
+      <div class="profile-summary-row"><div class="profile-summary-copy"><small>Senha</small><strong class="profile-masked-password" aria-label="Senha oculta">••••••••••••</strong></div><button type="button" class="ib profile-action-button" onclick="openProfileEditor('password')">Atualizar senha</button></div>
+    </div>
+    <div id="profile-global-feedback" class="profile-global-feedback" role="status" aria-live="polite" hidden></div>
+    <section id="profile-editor-section" class="profile-editor-section" hidden aria-live="polite">
+      <h3 id="profile-editor-title">Atualizar e-mail</h3>
+      <form id="profile-editor-form" onsubmit="submitProfileChange(event)">
+        <div id="profile-editor-fields"></div>
+        <p id="profile-editor-note" class="profile-field-note"></p>
+        <div id="profile-feedback" class="auth-feedback" role="status" aria-live="polite" hidden></div>
+        <div class="profile-actions"><button type="button" class="ib" onclick="cancelProfileEdit()">Cancelar</button><button type="submit" class="auth-primary-button">Continuar</button></div>
+      </form>
+    </section>
+    <p class="profile-security-note">A troca real de e-mail ou senha dependerá de confirmação por link no e-mail quando o serviço de autenticação estiver conectado. Esta prévia não envia mensagens nem altera credenciais.</p>
+  </section>
+</div>
+
+</body>
+</html>
